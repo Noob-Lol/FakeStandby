@@ -38,7 +38,7 @@ jobs:
 
     - name: Install Android Build Tools 29.0.3
       run: |
-        yes | sdkmanager "build-tools;29.0.3"
+        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "build-tools;29.0.3"
 
     - name: Sign Adfree APK
       id: sign-apk
