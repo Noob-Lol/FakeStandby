@@ -36,6 +36,13 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew assembleAdfreeRelease --stacktrace
 
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Install Android Build Tools 29.0.3
+      run: |
+        yes | sdkmanager "build-tools;29.0.3"
+
     - name: Sign Adfree APK
       id: sign-apk
       uses: r0adkll/sign-android-release@v1
