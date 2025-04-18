@@ -31,14 +31,26 @@ public class OverlayQuickTile extends TileService {
     };
 
 
+    private void collapseStatusBar() {
+        try {
+            Object service = getSystemService("statusbar");
+            Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
+            statusBarManager.getMethod("collapsePanels").invoke(service);
+        } catch (Exception e) {
+            Log.e("OverlayQuickTile", "Failed to collapse status bar", e);
+        }
+    }
+
     @Override
     public void onClick() {
         context = this;
 
         if (isLocked()) {
             unlockAndRun(start_overlay);
+            collapseStatusBar();
         }else {
             start_overlay.run();
+            collapseStatusBar();
         }
 
         onStartListening();
