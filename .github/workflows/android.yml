@@ -55,8 +55,8 @@ jobs:
     - name: Save artifact
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ steps.split-path.outputs.signedReleaseFileName }}
-        path: ${{ steps.split-path.outputs.signedReleaseFileDir }}
+        name: adfree-release-${{ steps.get-version.outputs.version }}.apk
+        path: app/build/outputs/apk/adfree/release/*.apk
         
   build-aab:
     runs-on: ubuntu-latest
